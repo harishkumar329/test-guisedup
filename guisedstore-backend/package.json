@@ -1,0 +1,45 @@
+{
+  "name": "guisedstore-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon --watch src --exec 'node src/index.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@adminjs/express": "^6.1.0",
+    "@adminjs/sequelize": "^4.1.0",
+    "@elastic/elasticsearch": "^8.12.2",
+    "adminjs": "^7.4.0",
+    "amqplib": "^0.10.8",
+    "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-formidable": "^1.2.0",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.17.3",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.6.1",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.15.6",
+    "pg-hstore": "^2.3.4",
+    "rate-limit-redis": "^4.2.0",
+    "sequelize": "^6.37.7",
+    "tslib": "^2.6.2",
+    "uuid": "^11.1.0",
+    "winston": "^3.12.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "sequelize-cli": "^6.6.3"
+  }
+}

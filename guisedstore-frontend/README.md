@@ -1,16 +1,17 @@
 # GuisedStore Frontend
 
-Modern, responsive e-commerce frontend built with Angular and Material Design.
+Modern, responsive e-commerce frontend built with Angular and Tailwind CSS.
 
 ## 🌟 Features
 
 ### User Interface
-- **Material Design**
-  - Clean, modern UI components
-  - Responsive layout
+- **Tailwind CSS**
+  - Utility-first CSS framework
+  - Responsive layout system
   - Dark/Light theme support
   - Custom animations
-  - Optimized loading states
+  - JIT compilation
+  - Optimized production builds
 
 ### Core Features
 - **Product Management**
@@ -113,12 +114,13 @@ src/
 
 ## 🎨 UI Components
 
-### Material Design Integration
+### Tailwind Integration
 - Custom theme configuration
-- Responsive navigation
-- Material forms and inputs
-- Loading indicators
-- Dialogs and modals
+- Responsive utilities
+- Component classes
+- Custom plugins
+- Design system tokens
+- Dynamic variants
 
 ### Layout Components
 - Responsive grid system

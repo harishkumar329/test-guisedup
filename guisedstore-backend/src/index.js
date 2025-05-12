@@ -2,23 +2,18 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
-import authRoutes from "./services/auth/auth.routes.js";
-import productRoutes from "./services/product/product.routes.js";
-import walletRoutes from "./services/wallet/wallet.routes.js";
-import cartRoutes from "./services/cart/cart.routes.js";
-import orderRoutes from "./services/order/order.routes.js";
 import { startElasticSyncQueue } from './queues/elastic.queue.js';
-// import adminRouter from "./admin.js";
 import { logger } from './utils/logger.js';
 import { syncProducts } from './services/product/product.search.js';
 import { rateLimiterMiddleware } from './middleware/rate-limiter.middleware.js';
+import router from './routes/index.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// Middlewares
 app.use(cors({
   origin: ['http://localhost:4200', 'https://guisedstore.com'],
   credentials: true
@@ -26,6 +21,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(rateLimiterMiddleware);
+
+// Use the centralized router
+app.use('/', router);
 
 // Helper function to wait
 const waitFor = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -65,34 +63,3 @@ const startServer = async () => {
 
 // Start the server
 startServer();
-
-// Sync products with Elasticsearch
-(async () => {
-  try {
-    await syncProducts();
-    logger.info('Initial Elasticsearch sync completed');
-  } catch (error) {
-    logger.error('Failed to sync with Elasticsearch:', error);
-  }
-})();
-
-// Admin router - must be mounted before other routes
-// app.use(adminRouter);
-
-// API routes
-
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'UP', timestamp: Date.now() });
-});
-
-app.get("/", (req, res) => {
-  res.send("GuisedStore API is running...");
-});
-
-// API Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/wallet', walletRoutes);
-app.use('/api/cart', cartRoutes);
-app.use('/api/orders', orderRoutes);

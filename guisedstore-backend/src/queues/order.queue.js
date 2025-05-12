@@ -1,7 +1,7 @@
 import { connect } from '../config/rabbitmq.js';
 import { logger } from '../utils/logger.js';
-import { Order } from '../services/order/order.model.js';
-import { Wallet, Transaction } from '../services/wallet/wallet.model.js';
+import { Order } from '../../models/order.model.js';
+import { Wallet, Transaction } from '../../models/wallet.model.js';
 import { sequelize } from '../config/db.js';
 
 const QUEUE_NAME = 'order_processing';

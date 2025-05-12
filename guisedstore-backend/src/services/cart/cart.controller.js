@@ -1,4 +1,4 @@
-import { Cart, CartItem } from './cart.model.js';
+import { Cart, CartItem } from '../../../models/cart.model.js';
 import { Product, Category } from '../../../models/product.js';
 import { sequelize } from '../../../src/config/db.js';
 import { logger } from '../../utils/logger.js';

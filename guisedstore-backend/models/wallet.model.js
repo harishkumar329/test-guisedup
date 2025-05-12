@@ -1,5 +1,5 @@
-import { sequelize, DataTypes } from '../../../src/config/db.js';
-import User from '../../../models/user.js';
+import { sequelize, DataTypes } from '../src/config/db.js';
+import User from './user.js';
 
 const Wallet = sequelize.define('Wallet', {
   id: {

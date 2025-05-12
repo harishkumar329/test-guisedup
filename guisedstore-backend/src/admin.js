@@ -1,9 +1,7 @@
 // admin.js
 import AdminJS from 'adminjs'
 import AdminJSExpress from '@adminjs/express'
-import session from 'express-session'
 import { Database, Resource } from '@adminjs/sequelize'
-import { sequelize } from './config/db.js'
 import { Product, Category } from '../models/product.js'
 import dotenv from 'dotenv'
 

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+      - nginx_cache:/tmp/nginx_cache
+      - nginx_proxy_cache:/tmp/nginx_proxy_cache
+    depends_on:
+      - backend
+      - auth-service
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  nginx_cache:
+  nginx_proxy_cache:
+
+networks:
+  app-network:
+    external: true

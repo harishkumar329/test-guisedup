@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./guisedstore-backend
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - DB_HOST=postgres
+      - REDIS_HOST=redis
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - AUTH_SERVICE_URL=http://auth-service:3001
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+      - elasticsearch
+    networks:
+      - app-network
+
+  auth-service:
+    build: ./auth-service
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DB_HOST=auth-db
+      - REDIS_HOST=auth-redis
+    depends_on:
+      - auth-db
+      - auth-redis
+    networks:
+      - app-network
+
+  api-gateway:
+    extends:
+      file: ./api-gateway/docker-compose.yml
+      service: api-gateway
+
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=guisedstore
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  auth-db:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=auth_db
+      - POSTGRES_USER=auth_user
+      - POSTGRES_PASSWORD=auth_password
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  redis:
+    image: redis:6-alpine
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+
+  auth-redis:
+    image: redis:6-alpine
+    volumes:
+      - auth_redis_data:/data
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - app-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+  auth_db_data:
+  redis_data:
+  auth_redis_data:
+  rabbitmq_data:
+  elasticsearch_data:
+  nginx_cache:
+  nginx_proxy_cache:
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DB_HOST=auth-db
+      - DB_PORT=5432
+      - DB_NAME=auth_db
+      - DB_USER=auth_user
+      - DB_PASSWORD=auth_password
+      - JWT_SECRET=your-secret-key
+      - REDIS_HOST=auth-redis
+      - REDIS_PORT=6379
+    depends_on:
+      - auth-db
+      - auth-redis
+    networks:
+      - auth-network
+      - app-network  # Connect to main application network
+
+  auth-db:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=auth_db
+      - POSTGRES_USER=auth_user
+      - POSTGRES_PASSWORD=auth_password
+    volumes:
+      - auth-db-data:/var/lib/postgresql/data
+    networks:
+      - auth-network
+
+  auth-redis:
+    image: redis:6-alpine
+    volumes:
+      - auth-redis-data:/data
+    networks:
+      - auth-network
+
+volumes:
+  auth-db-data:
+  auth-redis-data:
+
+networks:
+  auth-network:
+    driver: bridge
+  app-network:
+    external: true  # Use existing network from main application

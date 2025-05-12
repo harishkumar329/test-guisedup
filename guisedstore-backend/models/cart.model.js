@@ -1,6 +1,6 @@
-import { sequelize, DataTypes } from '../../../src/config/db.js';
-import User from '../../../models/user.js';
-import { Product } from '../../../models/product.js';
+import { sequelize, DataTypes } from '../src/config/db.js';
+import User from './user.js';
+import { Product } from './product.js';
 
 const Cart = sequelize.define('Cart', {
   id: {

@@ -1,7 +1,7 @@
-import { sequelize, DataTypes } from '../../../src/config/db.js';
-import User from '../../../models/user.js';
-import { Product } from '../../../models/product.js';
-import { Wallet } from '../wallet/wallet.model.js';
+import { sequelize, DataTypes } from '../src/config/db.js';
+import User from './user.js';
+import { Product } from './product.js';
+import { Wallet } from './wallet.model.js';
 
 const Order = sequelize.define('Order', {
   id: {

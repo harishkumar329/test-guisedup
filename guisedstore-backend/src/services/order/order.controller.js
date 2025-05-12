@@ -1,6 +1,6 @@
-import { Order, OrderItem } from './order.model.js';
-import { Cart, CartItem } from '../cart/cart.model.js';
-import { Wallet, Transaction } from '../wallet/wallet.model.js';
+import { Order, OrderItem } from '../../../models/order.model.js';
+import { Cart, CartItem } from '../../../models/cart.model.js';
+import { Wallet, Transaction } from '../../../models/wallet.model.js';
 import { Product, Category } from '../../../models/product.js';
 import { sequelize } from '../../../src/config/db.js';
 import { logger } from '../../utils/logger.js';

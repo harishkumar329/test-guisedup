@@ -1,4 +1,4 @@
-import { Wallet, Transaction } from './wallet.model.js';
+import { Wallet, Transaction } from '../../../models/wallet.model.js';
 import { sequelize } from '../../../src/config/db.js';
 
 // Get wallet balance and transaction history

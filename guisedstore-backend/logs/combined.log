@@ -573,3 +573,74 @@
 {"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"Redis error: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2025-05-10T12:33:18.155Z"}
 {"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"Redis rate limiter error: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2025-05-10T12:33:18.411Z"}
 {"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"Redis error: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2025-05-10T12:33:18.412Z"}
+{"level":"info","message":"Starting full product sync with Elasticsearch...","timestamp":"2025-05-12T08:03:08.712Z"}
+{"level":"info","message":"Connected to Redis","timestamp":"2025-05-12T08:03:08.740Z"}
+{"level":"info","message":"Connected to Redis rate limiter","timestamp":"2025-05-12T08:03:08.740Z"}
+{"level":"info","message":"Connected to database","timestamp":"2025-05-12T08:03:08.875Z"}
+{"address":"172.20.0.5","code":"ECONNREFUSED","errno":-111,"level":"error","message":"Error connecting to RabbitMQ: connect ECONNREFUSED 172.20.0.5:5672","port":5672,"stack":"Error: connect ECONNREFUSED 172.20.0.5:5672\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)","syscall":"connect","timestamp":"2025-05-12T08:03:13.898Z"}
+{"level":"info","message":"Retrying connection in 5 seconds... (5 attempts left)","timestamp":"2025-05-12T08:03:13.909Z"}
+{"address":"172.20.0.5","code":"ECONNREFUSED","errno":-111,"level":"error","message":"Error connecting to RabbitMQ: connect ECONNREFUSED 172.20.0.5:5672","port":5672,"stack":"Error: connect ECONNREFUSED 172.20.0.5:5672\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)","syscall":"connect","timestamp":"2025-05-12T08:03:19.031Z"}
+{"level":"info","message":"Retrying connection in 5 seconds... (4 attempts left)","timestamp":"2025-05-12T08:03:19.038Z"}
+{"level":"error","message":"Error syncing products to Elasticsearch: connect ECONNREFUSED 172.20.0.4:9200","meta":{"headers":{},"meta":{"aborted":false,"attempts":5,"connection":{"_openRequests":0,"deadCount":0,"headers":{"user-agent":"elasticsearch-js/8.18.2 (linux 6.6.12-linuxkit-arm64; Node.js 18.20.8; Transport 8.9.6)","x-elastic-client-meta":"es=8.18.2,js=18.20.8,t=8.9.6,un=18.20.8"},"id":"http://elasticsearch:9200/","maxEventListeners":100,"pool":{"_events":{},"_eventsCount":1},"resurrectTimeout":0,"timeout":60000,"tls":null,"url":"http://elasticsearch:9200/","weight":1000},"context":null,"name":"elasticsearch-js","request":{"id":3,"options":{},"params":{"headers":{"accept":"application/vnd.elasticsearch+json; compatible-with=8,text/plain","user-agent":"elasticsearch-js/8.18.2 (linux 6.6.12-linuxkit-arm64; Node.js 18.20.8; Transport 8.9.6)","x-elastic-client-meta":"es=8.18.2,js=18.20.8,t=8.9.6,un=18.20.8"},"method":"HEAD","path":"/products","querystring":""}}},"statusCode":0,"warnings":null},"name":"ConnectionError","options":{"redaction":{"additionalKeys":[],"type":"replace"}},"stack":"ConnectionError: connect ECONNREFUSED 172.20.0.4:9200\n    at SniffingTransport._request (/app/node_modules/@elastic/transport/lib/Transport.js:595:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /app/node_modules/@elastic/transport/lib/Transport.js:627:32\n    at async SniffingTransport.request (/app/node_modules/@elastic/transport/lib/Transport.js:623:20)\n    at async Indices.exists (/app/node_modules/@elastic/elasticsearch/lib/api/api/indices.js:562:16)\n    at async syncProducts (file:///app/src/services/product/product.search.js:85:25)\n    at async file:///app/src/index.js:72:5","timestamp":"2025-05-12T08:03:20.467Z"}
+{"level":"error","message":"Failed to sync with Elasticsearch: connect ECONNREFUSED 172.20.0.4:9200","meta":{"headers":{},"meta":{"aborted":false,"attempts":5,"connection":{"_openRequests":0,"deadCount":0,"headers":{"user-agent":"elasticsearch-js/8.18.2 (linux 6.6.12-linuxkit-arm64; Node.js 18.20.8; Transport 8.9.6)","x-elastic-client-meta":"es=8.18.2,js=18.20.8,t=8.9.6,un=18.20.8"},"id":"http://elasticsearch:9200/","maxEventListeners":100,"pool":{"_events":{},"_eventsCount":1},"resurrectTimeout":0,"timeout":60000,"tls":null,"url":"http://elasticsearch:9200/","weight":1000},"context":null,"name":"elasticsearch-js","request":{"id":3,"options":{},"params":{"headers":{"accept":"application/vnd.elasticsearch+json; compatible-with=8,text/plain","user-agent":"elasticsearch-js/8.18.2 (linux 6.6.12-linuxkit-arm64; Node.js 18.20.8; Transport 8.9.6)","x-elastic-client-meta":"es=8.18.2,js=18.20.8,t=8.9.6,un=18.20.8"},"method":"HEAD","path":"/products","querystring":""}}},"statusCode":0,"warnings":null},"name":"ConnectionError","options":{"redaction":{"additionalKeys":[],"type":"replace"}},"stack":"ConnectionError: connect ECONNREFUSED 172.20.0.4:9200\n    at SniffingTransport._request (/app/node_modules/@elastic/transport/lib/Transport.js:595:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /app/node_modules/@elastic/transport/lib/Transport.js:627:32\n    at async SniffingTransport.request (/app/node_modules/@elastic/transport/lib/Transport.js:623:20)\n    at async Indices.exists (/app/node_modules/@elastic/elasticsearch/lib/api/api/indices.js:562:16)\n    at async syncProducts (file:///app/src/services/product/product.search.js:85:25)\n    at async file:///app/src/index.js:72:5","timestamp":"2025-05-12T08:03:20.474Z"}
+{"level":"error","message":"Error connecting to Elasticsearch: connect ECONNREFUSED 172.20.0.4:9200","meta":{"headers":{},"meta":{"aborted":false,"attempts":5,"connection":{"_openRequests":0,"deadCount":0,"headers":{"user-agent":"elasticsearch-js/8.18.2 (linux 6.6.12-linuxkit-arm64; Node.js 18.20.8; Transport 8.9.6)","x-elastic-client-meta":"es=8.18.2,js=18.20.8,t=8.9.6,un=18.20.8"},"id":"http://elasticsearch:9200/","maxEventListeners":100,"pool":{"_events":{},"_eventsCount":1},"resurrectTimeout":0,"timeout":60000,"tls":null,"url":"http://elasticsearch:9200/","weight":1000},"context":null,"name":"elasticsearch-js","request":{"id":2,"options":{},"params":{"headers":{"accept":"application/vnd.elasticsearch+json; compatible-with=8,text/plain","user-agent":"elasticsearch-js/8.18.2 (linux 6.6.12-linuxkit-arm64; Node.js 18.20.8; Transport 8.9.6)","x-elastic-client-meta":"es=8.18.2,js=18.20.8,t=8.9.6,un=18.20.8"},"method":"HEAD","path":"/","querystring":""}}},"statusCode":0,"warnings":null},"name":"ConnectionError","options":{"redaction":{"additionalKeys":[],"type":"replace"}},"stack":"ConnectionError: connect ECONNREFUSED 172.20.0.4:9200\n    at SniffingTransport._request (/app/node_modules/@elastic/transport/lib/Transport.js:595:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /app/node_modules/@elastic/transport/lib/Transport.js:627:32\n    at async SniffingTransport.request (/app/node_modules/@elastic/transport/lib/Transport.js:623:20)\n    at async Client.PingApi [as ping] (/app/node_modules/@elastic/elasticsearch/lib/api/api/ping.js:41:12)\n    at async initializeElasticsearch (file:///app/src/config/elastic.js:17:5)","timestamp":"2025-05-12T08:03:22.755Z"}
+{"address":"172.20.0.5","code":"ECONNREFUSED","errno":-111,"level":"error","message":"Error connecting to RabbitMQ: connect ECONNREFUSED 172.20.0.5:5672","port":5672,"stack":"Error: connect ECONNREFUSED 172.20.0.5:5672\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16)","syscall":"connect","timestamp":"2025-05-12T08:03:24.051Z"}
+{"level":"info","message":"Retrying connection in 5 seconds... (3 attempts left)","timestamp":"2025-05-12T08:03:24.052Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-12T08:03:29.131Z"}
+{"level":"info","message":"Elasticsearch sync queue consumer started","timestamp":"2025-05-12T08:03:29.145Z"}
+{"level":"info","message":"Elasticsearch sync queue started successfully","timestamp":"2025-05-12T08:03:29.145Z"}
+{"level":"info","message":"Starting full product sync with Elasticsearch...","timestamp":"2025-05-12T08:03:29.150Z"}
+{"level":"info","message":"Server is running on port 3000","timestamp":"2025-05-12T08:03:29.153Z"}
+{"level":"info","message":"Successfully synced 18 products to Elasticsearch","timestamp":"2025-05-12T08:03:34.932Z"}
+{"level":"info","message":"Initial Elasticsearch sync completed","timestamp":"2025-05-12T08:03:34.934Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:04:37.725Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:04:39.270Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:04:42.363Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:04:45.970Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:04:46.755Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:04:55.565Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:05:07.133Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:05:21.151Z"}
+{"ip":"::ffff:172.20.0.7","level":"warn","message":"Rate limit exceeded","method":"POST","path":"/login","timestamp":"2025-05-12T08:09:04.499Z"}
+{"level":"info","message":"Starting full product sync with Elasticsearch...","timestamp":"2025-05-12T08:11:20.944Z"}
+{"level":"info","message":"Connected to Redis","timestamp":"2025-05-12T08:11:20.966Z"}
+{"level":"info","message":"Connected to Redis rate limiter","timestamp":"2025-05-12T08:11:20.967Z"}
+{"level":"info","message":"Connected to database","timestamp":"2025-05-12T08:11:21.637Z"}
+{"level":"info","message":"Connected to Elasticsearch","timestamp":"2025-05-12T08:11:21.956Z"}
+{"level":"info","message":"Successfully synced 18 products to Elasticsearch","timestamp":"2025-05-12T08:11:23.338Z"}
+{"level":"info","message":"Initial Elasticsearch sync completed","timestamp":"2025-05-12T08:11:23.338Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-12T08:11:26.789Z"}
+{"level":"info","message":"Elasticsearch sync queue consumer started","timestamp":"2025-05-12T08:11:26.795Z"}
+{"level":"info","message":"Elasticsearch sync queue started successfully","timestamp":"2025-05-12T08:11:26.795Z"}
+{"level":"info","message":"Starting full product sync with Elasticsearch...","timestamp":"2025-05-12T08:11:26.798Z"}
+{"level":"info","message":"Server is running on port 3000","timestamp":"2025-05-12T08:11:26.804Z"}
+{"level":"info","message":"Successfully synced 18 products to Elasticsearch","timestamp":"2025-05-12T08:11:27.136Z"}
+{"level":"info","message":"Initial Elasticsearch sync completed","timestamp":"2025-05-12T08:11:27.136Z"}
+{"level":"info","message":"Starting full product sync with Elasticsearch...","timestamp":"2025-05-12T08:19:39.910Z"}
+{"level":"info","message":"Connected to Redis rate limiter","timestamp":"2025-05-12T08:19:39.924Z"}
+{"level":"info","message":"Connected to Redis","timestamp":"2025-05-12T08:19:39.925Z"}
+{"level":"info","message":"Connected to Elasticsearch","timestamp":"2025-05-12T08:19:39.977Z"}
+{"level":"info","message":"Connected to database","timestamp":"2025-05-12T08:19:39.987Z"}
+{"level":"info","message":"Successfully synced 18 products to Elasticsearch","timestamp":"2025-05-12T08:19:41.477Z"}
+{"level":"info","message":"Initial Elasticsearch sync completed","timestamp":"2025-05-12T08:19:41.478Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-12T08:19:45.104Z"}
+{"level":"info","message":"Elasticsearch sync queue consumer started","timestamp":"2025-05-12T08:19:45.108Z"}
+{"level":"info","message":"Elasticsearch sync queue started successfully","timestamp":"2025-05-12T08:19:45.109Z"}
+{"level":"info","message":"Starting full product sync with Elasticsearch...","timestamp":"2025-05-12T08:19:45.116Z"}
+{"level":"info","message":"Server is running on port 3000","timestamp":"2025-05-12T08:19:45.122Z"}
+{"level":"info","message":"Successfully synced 18 products to Elasticsearch","timestamp":"2025-05-12T08:19:45.611Z"}
+{"level":"info","message":"Initial Elasticsearch sync completed","timestamp":"2025-05-12T08:19:45.612Z"}
+{"level":"info","message":"Starting full product sync with Elasticsearch...","timestamp":"2025-05-12T08:20:56.566Z"}
+{"level":"info","message":"Connected to Redis rate limiter","timestamp":"2025-05-12T08:20:56.579Z"}
+{"level":"info","message":"Connected to Redis","timestamp":"2025-05-12T08:20:56.580Z"}
+{"level":"info","message":"Connected to Elasticsearch","timestamp":"2025-05-12T08:20:56.641Z"}
+{"level":"info","message":"Connected to database","timestamp":"2025-05-12T08:20:56.673Z"}
+{"level":"info","message":"Successfully synced 18 products to Elasticsearch","timestamp":"2025-05-12T08:20:57.140Z"}
+{"level":"info","message":"Initial Elasticsearch sync completed","timestamp":"2025-05-12T08:20:57.143Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-12T08:21:01.811Z"}
+{"level":"info","message":"Elasticsearch sync queue consumer started","timestamp":"2025-05-12T08:21:01.816Z"}
+{"level":"info","message":"Elasticsearch sync queue started successfully","timestamp":"2025-05-12T08:21:01.817Z"}
+{"level":"info","message":"Starting full product sync with Elasticsearch...","timestamp":"2025-05-12T08:21:01.823Z"}
+{"level":"info","message":"Server is running on port 3000","timestamp":"2025-05-12T08:21:01.827Z"}
+{"level":"info","message":"Successfully synced 18 products to Elasticsearch","timestamp":"2025-05-12T08:21:02.314Z"}
+{"level":"info","message":"Initial Elasticsearch sync completed","timestamp":"2025-05-12T08:21:02.315Z"}

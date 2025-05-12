@@ -1,13 +1,17 @@
 version: '3.8'
 
 services:
+  auth-service:
+    extends:
+      file: ../auth-service/docker-compose.yml
+      service: auth-service
   backend:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: backend  # Explicitly set container name
+    container_name: backend
     expose:
-      - "3000"  # Only expose to other containers, don't publish to host
+      - "3000"
     networks:
       - app-network
     volumes:

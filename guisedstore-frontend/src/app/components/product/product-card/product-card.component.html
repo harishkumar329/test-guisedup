@@ -1,0 +1,23 @@
+<div class="card group">
+  <div class="relative">
+    <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-64 object-cover rounded-t-lg">
+  </div>
+  <div class="p-4">
+    <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
+    <p class="text-gray-600 mb-4 line-clamp-2">{{ product.description }}</p>
+    <div class="flex justify-between items-center">
+      <span class="text-xl font-bold text-primary">{{ product.price | currency:'INR' }}</span>
+      <div class="flex items-center gap-2">
+        <select [(ngModel)]="quantity" class="w-16 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+          <option *ngFor="let q of [1,2,3,4,5]" [value]="q">{{ q }}</option>
+        </select>
+        <button (click)="addToCart()" class="btn-primary flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

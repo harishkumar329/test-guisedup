@@ -1,0 +1,96 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ProductService } from '../../../services/product.service';
+import { ProductCardComponent } from '../product-card/product-card.component';
+import { FormsModule } from '@angular/forms';
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+}
+
+@Component({
+  selector: 'app-product-list',
+  standalone: true,
+  imports: [CommonModule, ProductCardComponent],
+  templateUrl: './product-list.component.html',
+  styleUrl: './product-list.component.scss'
+})
+export class ProductListComponent implements OnInit {
+  products: Product[] = [];
+  categories: Category[] = [];
+  loading = false;
+
+  constructor(private productService: ProductService) {}
+
+  ngOnInit() {
+    this.loading = true;
+    this.loadProducts();
+    this.loadCategories();
+  }
+
+  selectedCategory: string = '';
+  sortBy: string = '';
+
+  loadProducts() {
+    this.loading = true;
+    const params: any = {};
+    
+    if (this.selectedCategory) {
+      params.category = this.selectedCategory;
+    }
+    
+    if (this.sortBy) {
+      params.sortBy = this.sortBy.replace(/-(asc|desc)$/, '');
+      params.order = this.sortBy.endsWith('-desc') ? 'DESC' : 'ASC';
+    }
+
+    this.productService.getProducts(params).subscribe({
+      next: (products) => {
+        this.products = products;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error loading products:', error);
+        this.loading = false;
+      }
+    });
+  }
+
+  onSortChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.sortBy = select.value;
+    this.loadProducts();
+  }
+
+  onSortChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.sortBy = select.value;
+    this.sortProducts(this.sortBy);
+  }
+
+  onCategoryChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.selectedCategory = select.value;
+    this.loadProducts();
+  }
+
+  private loadCategories() {
+    this.productService.getCategories().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      },
+      error: (error) => {
+        console.error('Error loading categories:', error);
+      }
+    });
+  }
+}

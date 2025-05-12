@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  min-height: calc(100vh - 4rem); /* Adjust based on your header/footer height */
+}
+
+.order-item {
+  @apply transition-shadow duration-200;
+  &:hover {
+    @apply shadow-lg;
+  }
+}

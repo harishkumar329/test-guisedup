@@ -1,0 +1,45 @@
+<div class="relative">
+  <button class="flex items-center text-gray-600 hover:text-gray-900" (click)="toggleCart()">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+    <span class="ml-2">Cart</span>
+    <span *ngIf="cartCount > 0" class="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+      {{ cartCount }}
+    </span>
+  </button>
+
+  <!-- Cart Dropdown -->
+  <div *ngIf="isCartOpen" class="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-lg z-50">
+    <div class="p-4">
+      <h3 class="text-lg font-semibold mb-4">Shopping Cart</h3>
+      
+      <div *ngIf="cartItems.length === 0" class="text-gray-500 text-center py-4">
+        Your cart is empty
+      </div>
+
+      <div *ngIf="cartItems.length > 0">
+        <div *ngFor="let item of cartItems" class="flex items-center gap-4 mb-4">
+          <img [src]="item.product.imageUrl" [alt]="item.product.name" class="w-16 h-16 object-cover rounded">
+          <div class="flex-grow">
+            <h4 class="text-sm font-medium">{{ item.product.name }}</h4>
+            <div class="flex items-center mt-1">
+              <button class="text-gray-500 hover:text-gray-700" (click)="updateQuantity(item, -1)">-</button>
+              <span class="mx-2 text-sm">{{ item.quantity }}</span>
+              <button class="text-gray-500 hover:text-gray-700" (click)="updateQuantity(item, 1)">+</button>
+              <span class="ml-auto text-sm font-medium">{{ item.product.price * item.quantity | currency:'INR' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t pt-4 mt-4">
+          <div class="flex justify-between mb-4">
+            <span class="font-medium">Total:</span>
+            <span class="font-bold">{{ cartTotal | currency:'INR' }}</span>
+          </div>
+          <button class="btn-primary w-full" (click)="checkout()">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

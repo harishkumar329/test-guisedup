@@ -1,0 +1,37 @@
+<header class="bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center h-16">
+      <!-- Logo and Navigation -->
+      <div class="flex items-center space-x-8">
+        <a routerLink="/" class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:scale-105 transform transition-transform duration-200">
+          GuisedStore
+        </a>
+        <nav class="hidden md:flex space-x-6">
+          <a routerLink="/products" routerLinkActive="nav-link-active" class="nav-link text-lg">Products</a>
+          <a *ngIf="isLoggedIn$ | async" routerLink="/orders" routerLinkActive="nav-link-active" class="nav-link text-lg">Orders</a>
+        </nav>
+      </div>
+      <!-- Search and Cart -->
+      <div class="flex-1 flex justify-end items-center space-x-6">
+        <app-search></app-search>
+        <app-cart-widget *ngIf="isLoggedIn$ | async"></app-cart-widget>
+        <ng-container *ngIf="!(isLoggedIn$ | async); else userMenu">
+          <a routerLink="/login" class="nav-link text-lg hover:text-secondary transition-colors duration-200">Sign In</a>
+          <a routerLink="/signup" class="btn-primary">Sign Up</a>
+        </ng-container>
+        <ng-template #userMenu>
+          <a routerLink="/wallet" class="text-lg text-primary-light hover:text-primary transition-colors duration-200 mr-4">
+            <span class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+                <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd" />
+              </svg>
+              Wallet
+            </span>
+          </a>
+          <button (click)="logout()" class="btn-outline">Logout</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</header>
